@@ -31,9 +31,9 @@
                 </div>
             </li>
         </ul>
-        <div class="add-item">
+        <router-link to="/add_item" class="add-item">
             <span><i class="el-icon-circle-plus"></i></span>
-        </div>
+        </router-link>
     </div>
 </template>
 

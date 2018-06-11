@@ -1,0 +1,16 @@
+/* mixin */
+.font-dpr(@font-size) {
+    font-size: @font-size;
+    [data-dpr="2"] & {
+      font-size: @font-size * 2;
+    }
+    [data-dpr="3"] & {
+      font-size: @font-size * 3;
+    }
+}
+.bg-image(@url) {
+    background-image:~"url(@{url}@2x.png)";
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+      background-image:~"url(@{url}@3x.png)";
+    }
+}

@@ -1,83 +1,212 @@
 <template>
-  <div class="wrapper">
-    <div class="date-head">
-      <div class="date">
-        <div class="ib vam day">12</div>
-        <div class="ib vam year-month">
-          <span class="month">MAR</span>
-          <span class="year">2018</span>
+    <div class="wrapper">
+        <el-row class="date-head">
+            <el-col :span="12">
+                <div class="ib vam day">12</div>
+                <div class="ib vam year-month">
+                    <span class="month">MAR</span>
+                    <span class="year">2018</span>
+                </div>
+            </el-col>
+            <el-col :span="12">
+                <div class="week">TUESDAY</div>
+            </el-col>
+        </el-row>
+        <ul class="todo-list">
+            <li v-for="item in data">
+                <div class="color-tag" :class="'tag-'+item.tag"></div>
+                <div class="content">
+                    <div class="text">{{item.content}}</div>
+                    <el-row class="info">
+                        <el-col :span="12">
+                            <div class="time"><i class="el-icon-time"></i> {{item.time}}</div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="location"><i class="el-icon-location-outline"></i> {{item.location}}</div>
+                        </el-col>
+                    </el-row>
+                    <div class="icon">
+                        <i class="el-icon-success"></i>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="add-item">
+            <span><i class="el-icon-circle-plus"></i></span>
         </div>
-      </div>
-      <div class="week">TUESDAY</div>
     </div>
-    <ul class="todo-list">
-      <li>
-        <div class="content">xxxx</div>
-        <div class="action">完成</div>
-      </li>
-    </ul>
-  </div>
 </template>
 
 <script>
 export default {
-  name: 'TodoList',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+    name: 'TodoList',
+    data () {
+        return {
+            data: [
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'red'
+                },
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'green'
+                },
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'red'
+                },
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'yellow'
+                },
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'green'
+                },
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'red'
+                },
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'green'
+                },
+                {
+                    id: 1,
+                    content: '与好朋友去吃自助餐',
+                    time: '17:30',
+                    location: '正佳广场',
+                    tag: 'yellow'
+                }
+            ]
+        }
     }
-  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .wrapper {
-    padding: .5rem;
+<style scoped lang="less">
+.wrapper {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 100%;
+    background-color: #F7F7F7;
+}
+.date-head {
+    padding: 30px 80px;
     background-color: #FFF;
-  }
-  .date-head {
-    height: 1rem;
-        font-weight: bold;
-    overflow: hidden;
-  }
-  .date {
-    float: left;
-    width: 33%;
-  }
-  .day {
-    height: 1rem;
-    line-height: 1rem;
-  }
-  [data-dpr="1"] .day {
-    font-size: 32px;
-  }
-  [data-dpr="2"] .day {
-    font-size: 64px;
-  }
-  [data-dpr="3"] .day {
-    font-size: 96px;
-  }
-  .year-month {
-    width: 1rem;
-  }
-  .year, .month {
-    height: .5rem;
-    line-height: .5rem;
-  }
-  .week {
-    float: right;
-    width: 33%;
-    height: 1rem;
-    line-height: 1rem;
-  }
-    [data-dpr="1"] .week {
-    font-size: 16px;
-  }
-  [data-dpr="2"] .week {
-    font-size: 32px;
-  }
-  [data-dpr="3"] .week {
-    font-size: 48px;
-  }
+    color: @font-color;
+    font-weight: bold;
+}
+.day {
+    height: 75px;
+    line-height: 75px;
+    font-size: 64px; /*px*/
+}
+.year-month {
+    margin-left: 20px;
+    width: 75px;
+    font-size: 30px; /*px*/
+}
+.year, .month {
+    height: 37.5px;
+    line-height: 37.5px;
+}
+.week {
+    height: 75px;
+    line-height: 75px;
+    font-size: 32px; /*px*/
+    text-align: right;
+}
+.todo-list {
+    padding: 0px 30px;
+
+    li {
+        position: relative;
+        margin: 30px 0px;
+        padding-left: 30px;
+        border-radius: 10px; /*no*/
+        overflow: hidden;
+    }
+
+    .color-tag {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        background-color: #999;
+    }
+    
+    .tag-red {
+        background-color: #f25f5c;
+    }
+    .tag-yellow {
+        background-color: #ffe066;
+    }
+    .tag-green {
+        background-color: #70c1b3;
+    }
+
+    .content {
+        position: relative;
+        padding: 20px 75px 20px 20px;
+        background-color: #FFF;
+        line-height: 50px;
+        font-size: 36px;/*px*/
+        color: @font-color;
+
+        .info {
+            font-size: 24px;
+        }
+
+        .icon {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            height: 100%;
+            width: 36px;
+
+            i {
+                position: absolute;
+                right: 0;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                margin: auto;
+                height: 40px;
+                font-size: 40px;
+            }
+        }
+    }
+}
+.add-item {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 120px;
+    color: @action-color;
+}
 </style>

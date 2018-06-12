@@ -11,10 +11,13 @@
             <el-col :span="12">
                 <div class="week">TUESDAY</div>
             </el-col>
+            <router-link to="/add_item" class="add-item">
+                <el-button type="primary" icon="el-icon-edit" circle></el-button>
+            </router-link>
         </el-row>
         <ul class="todo-list">
-            <li v-for="item in data">
-                <div class="color-tag" :class="'tag-'+item.tag"></div>
+            <li v-for="item in list">
+                <div class="color-tag" :class="'bg-'+item.tag"></div>
                 <div class="content">
                     <div class="text">{{item.content}}</div>
                     <el-row class="info">
@@ -31,9 +34,7 @@
                 </div>
             </li>
         </ul>
-        <router-link to="/add_item" class="add-item">
-            <span><i class="el-icon-circle-plus"></i></span>
-        </router-link>
+        
     </div>
 </template>
 
@@ -42,65 +43,17 @@ export default {
     name: 'TodoList',
     data () {
         return {
-            data: [
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'red'
-                },
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'green'
-                },
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'red'
-                },
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'yellow'
-                },
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'green'
-                },
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'red'
-                },
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'green'
-                },
-                {
-                    id: 1,
-                    content: '与好朋友去吃自助餐',
-                    time: '17:30',
-                    location: '正佳广场',
-                    tag: 'yellow'
-                }
-            ]
+            list: []
         }
+    },
+    methods: {
+        getList: function() {
+            this.list = this.$store.state.list;
+            console.log(this.list);
+        }
+    },
+    mounted: function() {
+        this.getList();
     }
 }
 </script>
@@ -114,10 +67,26 @@ export default {
     background-color: #F7F7F7;
 }
 .date-head {
-    padding: 30px 80px;
+    position: relative;
+    padding: 30px 195px 30px 80px;
     background-color: #FFF;
     color: @font-color;
     font-weight: bold;
+}
+.add-item {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    margin-top: -40px;
+    height: 80px;
+    line-height: 80px;
+    color: @action-color;
+
+    button {
+        font-size: 36px;
+        background-color: @action-color;
+        border-color: @action-color;
+    }
 }
 .day {
     height: 75px;
@@ -125,7 +94,7 @@ export default {
     font-size: 64px; /*px*/
 }
 .year-month {
-    margin-left: 20px;
+    margin-left: 10px;
     width: 75px;
     font-size: 30px; /*px*/
 }
@@ -137,7 +106,7 @@ export default {
     height: 75px;
     line-height: 75px;
     font-size: 32px; /*px*/
-    text-align: right;
+    text-align: center;
 }
 .todo-list {
     padding: 0px 30px;
@@ -157,16 +126,6 @@ export default {
         width: 30px;
         height: 100%;
         background-color: #999;
-    }
-    
-    .tag-red {
-        background-color: #f25f5c;
-    }
-    .tag-yellow {
-        background-color: #ffe066;
-    }
-    .tag-green {
-        background-color: #70c1b3;
     }
 
     .content {
@@ -200,13 +159,5 @@ export default {
             }
         }
     }
-}
-.add-item {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    text-align: center;
-    font-size: 120px;
-    color: @action-color;
 }
 </style>

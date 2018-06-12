@@ -6,6 +6,8 @@
 
 > elementUI
 
+> Vuex
+
 ## Build Setup
 
 ``` bash
